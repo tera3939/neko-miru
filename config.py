@@ -8,8 +8,10 @@ APP_NAME = "neko-miru"
 SECRET_NAME = APP_NAME+".secret"
 
 DATABASE_NAME = "neko-miru"
-TOOT_COLLECTION = "toots"
+TOOTS_COLLECTION = "toots"
 FAVORITES_COLLECTION = "favorites"
+
+CACHE_FOLDER = "cache/"
 
 
 def create_app():

@@ -28,14 +28,14 @@ def create_app():
 
 def create_db():
     global DATABASE_NAME
-    global TOOT_COLLECTION
+    global TOOTS_COLLECTION
     global FAVORITES_COLLECTION
 
     con = MongoClient()
     db = con[DATABASE_NAME]
-    db.create_collection(TOOT_COLLECTION)
+    db.create_collection(TOOTS_COLLECTION)
     db.create_collection(FAVORITES_COLLECTION)
-    db[TOOT_COLLECTION].create_index([("id", 1)], unique=True)
+    db[TOOTS_COLLECTION].create_index([("id", 1)], unique=True)
     db[FAVORITES_COLLECTION].create_index([("id", 1)], unique=True)
     con.close()
 

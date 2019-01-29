@@ -33,7 +33,7 @@ def create_db():
 
     con = MongoClient()
     db = con[DATABASE_NAME]
-    db.create_collection(TOOT_COLLECTION, capped=True, size=1000000)
+    db.create_collection(TOOT_COLLECTION)
     db.create_collection(FAVORITES_COLLECTION)
     db[TOOT_COLLECTION].create_index([("id", 1)], unique=True)
     db[FAVORITES_COLLECTION].create_index([("id", 1)], unique=True)

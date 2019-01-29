@@ -9,5 +9,23 @@
 <body>
     <h1>ねこをみる</h1>
     <a href="./">home</a>
+    <ul>
+        {% for toot in toots %}
+            <li>
+            <h2>{{toot["account"]["username"]}}</h2>
+            <div class="toot">{{toot["content"]|safe}}</div>
+            {% for media in toot["media_attachments"] %}
+                <a href="{{ media['url'] }}">
+                    {% if "cached" in toot and toot["cached"] %}
+                        <img src="{{ url_for('static', filename=media['cache_path']) }}" alt="preview">
+                    {% else %}
+                        <img src="{{ media['preview_url'] }}" alt="preview">
+                    {% endif %}
+                </a>
+            {% endfor %}
+            <time>{{toot["created_at"]}}</time>
+            </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

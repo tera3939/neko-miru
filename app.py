@@ -9,7 +9,9 @@ NEKO_ARCHIVER = NekoArchiver()
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    global NEKO_ARCHIVER
+    toots = NEKO_ARCHIVER.get_nekos().sort([("created_at", -1)])
+    return render_template("index.html", toots=toots)
 
 
 if __name__ == "__main__":

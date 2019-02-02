@@ -20,7 +20,7 @@ def index():
 @app.route("/favorite_list")
 def favorite_list():
     global FAVORITE_ARCHIVER
-    return render_template("favorite.html", favorites=FAVORITE_ARCHIVER.tootlist())
+    return render_template("favorite.html", toots=FAVORITE_ARCHIVER.tootlist())
 
 
 @app.route("/operation/favorite", methods=["POST"])

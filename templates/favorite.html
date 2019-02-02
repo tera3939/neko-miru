@@ -1,41 +1,10 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script type="text/javascript" src="{{ url_for('static', filename='main.js') }}"></script>
-    <title>cattodon</title>
-</head>
-<body>
-    <h1>favorite</h1>
+{% extends "base.html" %}
+
+{% block title %}Top{% endblock %}
+
+{% block content %}
+    <h1>Favorite</h1>
     <a href="./">home</a>
     <a href="./favorite_list">favorite</a>
-    <ul>
-    {% for favorite in favorites %}
-        <li>
-            <h2>{{favorite["account"]["username"]}}</h2>
-            <div class="toot">{{favorite["content"]|safe}}</div>
-            {% for media in favorite["media_attachments"] %}
-                <a href="{{ media['url'] }}">
-                    {% if "cached" in toot and toot["cached"] %}
-                        <img src="{{ url_for('static', filename=media['cache_path']) }}" alt="preview">
-                    {% else %}
-                        <img src="{{ media['preview_url'] }}" alt="preview">
-                    {% endif %}
-                </a>
-            {% endfor %}
-            <form class="fav">
-                <input type="hidden" name="id" value="{{ favorite['id'] }}">
-            {% if "is_favorited" in favorite and favorite["is_favorited"] %}
-                <input type="button" value="unfavorite" class="fav_button"></input>
-            {% else %}
-                <input type="button" value="favorite" class="fav_button"></input>
-            {% endif %}
-            </form>
-            <time>{{favorite["created_at"]}}</time>
-        </li>
-    {% endfor %}
-    </ul>
-</body>
-</html>
+    {{ super() }}
+{% endblock %}
